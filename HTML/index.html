@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,22 +12,298 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="../CSS/style.css">
+  
+  <style>
+    /* Animation Keyframes */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInBottom {
+      from {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes rotateIn {
+      from {
+        opacity: 0;
+        transform: rotate(-10deg) scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    @keyframes wave {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      25% {
+        transform: rotate(10deg);
+      }
+      75% {
+        transform: rotate(-10deg);
+      }
+    }
+
+    /* Animation Classes */
+    .animate-fade-up {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .animate-fade-left {
+      opacity: 0;
+      animation: fadeInLeft 0.8s ease forwards;
+    }
+
+    .animate-fade-right {
+      opacity: 0;
+      animation: fadeInRight 0.8s ease forwards;
+    }
+
+    .animate-fade-scale {
+      opacity: 0;
+      animation: fadeInScale 0.8s ease forwards;
+    }
+
+    .animate-slide-bottom {
+      opacity: 0;
+      animation: slideInBottom 0.8s ease forwards;
+    }
+
+    .animate-rotate {
+      opacity: 0;
+      animation: rotateIn 0.8s ease forwards;
+    }
+
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .animate-pulse {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .animate-wave {
+      animation: wave 2s ease-in-out infinite;
+    }
+
+    /* Delay Classes */
+    .delay-1 {
+      animation-delay: 0.2s;
+    }
+    .delay-2 {
+      animation-delay: 0.4s;
+    }
+    .delay-3 {
+      animation-delay: 0.6s;
+    }
+    .delay-4 {
+      animation-delay: 0.8s;
+    }
+    .delay-5 {
+      animation-delay: 1s;
+    }
+
+    /* Hover Animations */
+    .hover-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: scale(1.05);
+    }
+
+    .hover-rotate {
+      transition: transform 0.3s ease;
+    }
+    .hover-rotate:hover {
+      transform: rotate(5deg);
+    }
+
+    .hover-glow {
+      transition: box-shadow 0.3s ease;
+    }
+    .hover-glow:hover {
+      box-shadow: 0 0 20px var(--accent-light);
+    }
+
+    /* Scroll Trigger Animations */
+    .scroll-fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .scroll-fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-fade-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .scroll-fade-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scroll-fade-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .scroll-fade-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scroll-scale {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .scroll-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Stagger Children Animations */
+    .stagger-children > * {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+    .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+    .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+    .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+    .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+    .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+
+    /* Loading Animation */
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--primary-soft);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Shimmer Effect */
+    .shimmer {
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      background-size: 1000px 100%;
+      animation: shimmer 3s infinite;
+    }
+
+    /* Page Transition */
+    .page-transition {
+      animation: fadeInScale 0.5s ease;
+    }
+  </style>
+  
   <script src="../JS/script.js"></script>
 </head>
-<body>
-
-<!-- ANNOUNCEMENT BAR -->
-<div class="announcement">
-  <div class="container">
-    <p>✨ First consultation free • Emergency 24/7 • Call: +91 22 2876 5432</p>
-  </div>
-</div>
+<body class="page-transition">
 
 <!-- NAVIGATION -->
-<nav class="nav">
+<nav class="nav animate-fade-up">
   <div class="container nav-container">
-    <a href="#" class="nav-logo">
-      <i class="fas fa-tooth"></i>
+    <a href="#" class="nav-logo hover-scale">
+      <i class="fas fa-tooth animate-wave"></i>
       <span>Goregaon<span>Dental</span></span>
     </a>
 
@@ -40,7 +317,7 @@
     </div>
 
     <div class="nav-actions">
-      <a href="#contact" class="btn btn-primary">
+      <a href="#contact" class="btn btn-primary hover-lift">
         <i class="fas fa-calendar-check"></i>
         <span>Book Now</span>
       </a>
@@ -55,42 +332,42 @@
 <section class="hero" id="home">
   <div class="container hero-grid">
     <div class="hero-content">
-      <span class="hero-tag">Welcome to modern dentistry</span>
-      <h1>Where every <span>smile</span> gets the care it deserves</h1>
-      <p>Experience gentle, pain-free dental care with our expert team and advanced technology. Your comfort is our priority.</p>
+      <span class="hero-tag animate-fade-left delay-1">Welcome to modern dentistry</span>
+      <h1 class="animate-fade-left delay-2">Where every <span>smile</span> gets the care it deserves</h1>
+      <p class="animate-fade-left delay-3">Experience gentle, pain-free dental care with our expert team and advanced technology. Your comfort is our priority.</p>
       
-      <div class="hero-features">
-        <div class="hero-feature">
+      <div class="hero-features animate-fade-left delay-4">
+        <div class="hero-feature hover-lift">
           <i class="fas fa-user-md"></i>
           <span>15+ years experience</span>
         </div>
-        <div class="hero-feature">
+        <div class="hero-feature hover-lift">
           <i class="fas fa-smile"></i>
           <span>5000+ happy patients</span>
         </div>
-        <div class="hero-feature">
+        <div class="hero-feature hover-lift">
           <i class="fas fa-star"></i>
           <span>4.9 ★★★★☆</span>
         </div>
       </div>
 
-      <div class="hero-buttons">
-        <a href="#contact" class="btn btn-primary btn-large">
+      <div class="hero-buttons animate-fade-left delay-5">
+        <a href="#contact" class="btn btn-primary btn-large hover-lift">
           <i class="fas fa-calendar-alt"></i>
           Book Appointment
         </a>
-        <a href="#services" class="btn btn-outline btn-large">
+        <a href="#services" class="btn btn-outline btn-large hover-lift">
           <i class="fas fa-chevron-down"></i>
           Explore Services
         </a>
       </div>
     </div>
 
-    <div class="hero-visual">
-      <div class="hero-card">
-        <i class="fas fa-tooth"></i>
-        <div class="hero-badge">✨ Gentle Care</div>
-        <div class="hero-badge secondary">🦷 Pain Free</div>
+    <div class="hero-visual animate-fade-right delay-2">
+      <div class="hero-card animate-float">
+        <i class="fas fa-tooth animate-pulse"></i>
+        <div class="hero-badge animate-float">✨ Gentle Care</div>
+        <div class="hero-badge secondary animate-float" style="animation-delay: 1s;">🦷 Pain Free</div>
       </div>
     </div>
   </div>
@@ -99,21 +376,21 @@
 <!-- QUICK ACTIONS -->
 <section class="quick-actions">
   <div class="container">
-    <div class="actions-grid">
-      <div class="action-card">
-        <i class="fas fa-phone-alt"></i>
+    <div class="actions-grid stagger-children">
+      <div class="action-card hover-lift">
+        <i class="fas fa-phone-alt animate-wave"></i>
         <h3>Call Us</h3>
         <p>+91 22 2876 5432</p>
         <small>24/7 Emergency Available</small>
       </div>
-      <div class="action-card">
-        <i class="fas fa-map-marker-alt"></i>
+      <div class="action-card hover-lift">
+        <i class="fas fa-map-marker-alt animate-wave"></i>
         <h3>Visit Us</h3>
         <p>MG Road, Goregaon West</p>
         <small>Open Mon-Sat 9:30-8:30</small>
       </div>
-      <div class="action-card">
-        <i class="fas fa-whatsapp"></i>
+      <div class="action-card hover-lift">
+        <i class="fas fa-whatsapp animate-wave"></i>
         <h3>WhatsApp</h3>
         <p>+91 98200 11234</p>
         <small>Quick response within 5 min</small>
@@ -125,65 +402,65 @@
 <!-- SERVICES -->
 <section class="services" id="services">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header scroll-fade-up">
       <span class="section-tag">What we offer</span>
       <h2>Complete dental care <span>for everyone</span></h2>
       <p>From routine checkups to advanced procedures, we've got you covered</p>
     </div>
 
-    <div class="services-grid">
-      <div class="service-item">
-        <div class="service-icon">
+    <div class="services-grid stagger-children">
+      <div class="service-item hover-lift">
+        <div class="service-icon hover-rotate">
           <i class="fas fa-tooth"></i>
         </div>
         <h3>Teeth Cleaning</h3>
         <p>Professional cleaning to keep your smile bright and healthy</p>
-        <div class="service-price">from ₹999</div>
+        <div class="service-price animate-pulse">from ₹999</div>
       </div>
 
-      <div class="service-item">
-        <div class="service-icon">
+      <div class="service-item hover-lift">
+        <div class="service-icon hover-rotate">
           <i class="fas fa-smile"></i>
         </div>
         <h3>Teeth Whitening</h3>
         <p>Laser whitening for a brighter, confident smile</p>
-        <div class="service-price">from ₹3999</div>
+        <div class="service-price animate-pulse">from ₹3999</div>
       </div>
 
-      <div class="service-item">
-        <div class="service-icon">
+      <div class="service-item hover-lift">
+        <div class="service-icon hover-rotate">
           <i class="fas fa-teeth"></i>
         </div>
         <h3>Braces & Aligners</h3>
         <p>Straighten your teeth with traditional or invisible braces</p>
-        <div class="service-price">from ₹23,000</div>
+        <div class="service-price animate-pulse">from ₹23,000</div>
       </div>
 
-      <div class="service-item">
-        <div class="service-icon">
+      <div class="service-item hover-lift">
+        <div class="service-icon hover-rotate">
           <i class="fas fa-microscope"></i>
         </div>
         <h3>Dental Implants</h3>
         <p>Permanent, natural-looking tooth replacements</p>
-        <div class="service-price">from ₹35,000</div>
+        <div class="service-price animate-pulse">from ₹35,000</div>
       </div>
 
-      <div class="service-item">
-        <div class="service-icon">
+      <div class="service-item hover-lift">
+        <div class="service-icon hover-rotate">
           <i class="fas fa-shield-alt"></i>
         </div>
         <h3>Root Canal</h3>
         <p>Pain-free treatment to save your natural tooth</p>
-        <div class="service-price">from ₹5,000</div>
+        <div class="service-price animate-pulse">from ₹5,000</div>
       </div>
 
-      <div class="service-item">
-        <div class="service-icon">
+      <div class="service-item hover-lift">
+        <div class="service-icon hover-rotate">
           <i class="fas fa-baby"></i>
         </div>
         <h3>Kids Dentistry</h3>
         <p>Gentle, friendly care for your little ones</p>
-        <div class="service-price">from ₹499</div>
+        <div class="service-price animate-pulse">from ₹499</div>
       </div>
     </div>
   </div>
@@ -192,49 +469,49 @@
 <!-- TEAM -->
 <section class="team" id="team">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header scroll-fade-up">
       <span class="section-tag">Our experts</span>
       <h2>Meet the <span>team</span></h2>
       <p>Skilled professionals who genuinely care about your smile</p>
     </div>
 
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="team-image">
+    <div class="team-grid stagger-children">
+      <div class="team-card hover-lift">
+        <div class="team-image hover-scale">
           <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Dr. Priya Desai">
         </div>
         <h3>Dr. Priya Desai</h3>
         <p class="team-title">Lead Dentist • BDS, MDS</p>
         <p class="team-desc">15+ years experience in prosthodontics and cosmetic dentistry</p>
         <div class="team-social">
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover-rotate"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="hover-rotate"><i class="fab fa-twitter"></i></a>
         </div>
       </div>
 
-      <div class="team-card">
-        <div class="team-image">
+      <div class="team-card hover-lift">
+        <div class="team-image hover-scale">
           <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Dr. Rajesh Kumar">
         </div>
         <h3>Dr. Rajesh Kumar</h3>
         <p class="team-title">Orthodontist • BDS, MDS</p>
         <p class="team-desc">Specialist in braces and aligners with 10+ years experience</p>
         <div class="team-social">
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover-rotate"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="hover-rotate"><i class="fab fa-twitter"></i></a>
         </div>
       </div>
 
-      <div class="team-card">
-        <div class="team-image">
+      <div class="team-card hover-lift">
+        <div class="team-image hover-scale">
           <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Dr. Sneha Patel">
         </div>
         <h3>Dr. Sneha Patel</h3>
         <p class="team-title">Pediatric Dentist • BDS</p>
         <p class="team-desc">Making dental visits fun and comfortable for children</p>
         <div class="team-social">
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover-rotate"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="hover-rotate"><i class="fab fa-twitter"></i></a>
         </div>
       </div>
     </div>
@@ -246,13 +523,13 @@
   <div class="container">
     <div class="contact-grid">
       <div class="contact-info">
-        <span class="section-tag">Get in touch</span>
-        <h2>Ready to <span>transform</span> your smile?</h2>
-        <p>Book your appointment today and take the first step towards a healthier, brighter smile.</p>
+        <span class="section-tag scroll-fade-left">Get in touch</span>
+        <h2 class="scroll-fade-left delay-1">Ready to <span>transform</span> your smile?</h2>
+        <p class="scroll-fade-left delay-2">Book your appointment today and take the first step towards a healthier, brighter smile.</p>
 
         <div class="contact-list">
-          <div class="contact-item">
-            <i class="fas fa-phone"></i>
+          <div class="contact-item hover-lift scroll-fade-left" style="transition-delay: 0.2s;">
+            <i class="fas fa-phone animate-wave"></i>
             <div>
               <h4>Call or WhatsApp</h4>
               <p>+91 22 2876 5432</p>
@@ -260,8 +537,8 @@
             </div>
           </div>
 
-          <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
+          <div class="contact-item hover-lift scroll-fade-left" style="transition-delay: 0.4s;">
+            <i class="fas fa-map-marker-alt animate-wave"></i>
             <div>
               <h4>Visit our clinic</h4>
               <p>Shop 4, Satnam Plaza, MG Road</p>
@@ -269,8 +546,8 @@
             </div>
           </div>
 
-          <div class="contact-item">
-            <i class="fas fa-clock"></i>
+          <div class="contact-item hover-lift scroll-fade-left" style="transition-delay: 0.6s;">
+            <i class="fas fa-clock animate-wave"></i>
             <div>
               <h4>Working hours</h4>
               <p>Monday - Saturday: 9:30 AM - 8:30 PM</p>
@@ -280,21 +557,21 @@
         </div>
       </div>
 
-      <div class="contact-form">
+      <div class="contact-form scroll-fade-right">
         <h3>Book your appointment</h3>
         <form id="appointmentForm">
           <div class="form-group">
-            <input type="text" placeholder="Your full name" id="name" required>
+            <input type="text" placeholder="Your full name" id="name" required class="hover-glow">
           </div>
           <div class="form-group">
-            <input type="email" placeholder="Email address" id="email" required>
+            <input type="email" placeholder="Email address" id="email" required class="hover-glow">
           </div>
           <div class="form-row">
             <div class="form-group">
-              <input type="tel" placeholder="Phone number" id="phone" required>
+              <input type="tel" placeholder="Phone number" id="phone" required class="hover-glow">
             </div>
             <div class="form-group">
-              <select id="preferredTime">
+              <select id="preferredTime" class="hover-glow">
                 <option value="">Preferred time</option>
                 <option>Morning (9-12)</option>
                 <option>Afternoon (12-4)</option>
@@ -303,9 +580,9 @@
             </div>
           </div>
           <div class="form-group">
-            <textarea placeholder="Tell us about your dental concern" id="message" rows="4"></textarea>
+            <textarea placeholder="Tell us about your dental concern" id="message" rows="4" class="hover-glow"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-full">
+          <button type="submit" class="btn btn-primary btn-full hover-lift">
             <i class="fas fa-paper-plane"></i>
             Send Request
           </button>
@@ -317,7 +594,7 @@
 </section>
 
 <!-- MAP -->
-<section class="map">
+<section class="map scroll-fade-up">
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.747319818643!2d72.8284196!3d19.1545007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63c2c6b9b5b%3A0xfd3a7b7b7b7c9c!2sGoregaon%2C%20Mumbai!5e0!3m2!1sen!2sin!4v1712345678901" allowfullscreen="" loading="lazy"></iframe>
 </section>
 
@@ -325,56 +602,56 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="#" class="footer-logo">
-          <i class="fas fa-tooth"></i>
+      <div class="footer-brand scroll-fade-up">
+        <a href="#" class="footer-logo hover-scale">
+          <i class="fas fa-tooth animate-wave"></i>
           <span>Goregaon<span>Dental</span></span>
         </a>
         <p>Your trusted partner for dental care in Goregaon since 2008.</p>
         <div class="footer-social">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="hover-rotate"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="hover-rotate"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover-rotate"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover-rotate"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </div>
 
-      <div class="footer-links">
+      <div class="footer-links scroll-fade-up delay-1">
         <h4>Quick links</h4>
         <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#team">Our Team</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#home" class="hover-lift">Home</a></li>
+          <li><a href="#services" class="hover-lift">Services</a></li>
+          <li><a href="#team" class="hover-lift">Our Team</a></li>
+          <li><a href="#contact" class="hover-lift">Contact</a></li>
         </ul>
       </div>
 
-      <div class="footer-links">
+      <div class="footer-links scroll-fade-up delay-2">
         <h4>Services</h4>
         <ul>
-          <li><a href="#services">Teeth Cleaning</a></li>
-          <li><a href="#services">Root Canal</a></li>
-          <li><a href="#services">Dental Implants</a></li>
-          <li><a href="#services">Braces & Aligners</a></li>
+          <li><a href="#services" class="hover-lift">Teeth Cleaning</a></li>
+          <li><a href="#services" class="hover-lift">Root Canal</a></li>
+          <li><a href="#services" class="hover-lift">Dental Implants</a></li>
+          <li><a href="#services" class="hover-lift">Braces & Aligners</a></li>
         </ul>
       </div>
 
-      <div class="footer-newsletter">
+      <div class="footer-newsletter scroll-fade-up delay-3">
         <h4>Stay updated</h4>
         <p>Get dental tips and offers</p>
         <div class="newsletter-form">
-          <input type="email" placeholder="Your email" id="newsletterEmail">
-          <button id="newsletterBtn"><i class="fas fa-paper-plane"></i></button>
+          <input type="email" placeholder="Your email" id="newsletterEmail" class="hover-glow">
+          <button id="newsletterBtn" class="hover-scale"><i class="fas fa-paper-plane"></i></button>
         </div>
       </div>
     </div>
 
-    <div class="footer-bottom">
+    <div class="footer-bottom scroll-fade-up">
       <p>© 2026 Goregaon Dental Center. All rights reserved.</p>
       <div class="footer-legal">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Cookies</a>
+        <a href="#" class="hover-lift">Privacy</a>
+        <a href="#" class="hover-lift">Terms</a>
+        <a href="#" class="hover-lift">Cookies</a>
       </div>
     </div>
   </div>
@@ -382,10 +659,181 @@
 
 <!-- BACK TO TOP -->
 <button class="back-top" id="backTop">
-  <i class="fas fa-arrow-up"></i>
+  <i class="fas fa-arrow-up animate-float"></i>
 </button>
 
 <!-- JS -->
 <script src="../JS/script.js"></script>
+
+<!-- Scroll Animation Script -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Scroll animation observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observe all elements with scroll animation classes
+    document.querySelectorAll('.scroll-fade-up, .scroll-fade-left, .scroll-fade-right, .scroll-scale').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Loading animation for form submission
+    const form = document.getElementById('appointmentForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        
+        // Add loading spinner
+        submitBtn.innerHTML = '<div class="loading-spinner" style="width:20px;height:20px;border-width:2px;"></div> Sending...';
+        submitBtn.disabled = true;
+        
+        // Simulate form submission
+        setTimeout(() => {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+          
+          // Show success message
+          const msg = document.getElementById('formMessage');
+          msg.textContent = '✓ Appointment request sent! We\'ll contact you soon.';
+          msg.classList.add('success-message');
+          
+          // Clear form
+          this.reset();
+          
+          // Hide message after 5 seconds
+          setTimeout(() => {
+            msg.textContent = '';
+            msg.classList.remove('success-message');
+          }, 5000);
+        }, 2000);
+      });
+    }
+
+    // Smooth scroll with animation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Mobile menu toggle with animation
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    
+    if (navToggle) {
+      navToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+        const icon = this.querySelector('i');
+        if (navMenu.classList.contains('active')) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+          // Animate menu items
+          document.querySelectorAll('.nav-list .nav-link').forEach((link, index) => {
+            link.style.animation = `fadeInRight 0.3s ease forwards ${index * 0.1}s`;
+          });
+        } else {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
+      });
+    }
+
+    // Back to top button with fade animation
+    const backTop = document.getElementById('backTop');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 500) {
+        backTop.style.display = 'flex';
+        backTop.style.animation = 'fadeInScale 0.3s ease forwards';
+      } else {
+        backTop.style.display = 'none';
+      }
+    });
+
+    // Newsletter button animation
+    const newsletterBtn = document.getElementById('newsletterBtn');
+    if (newsletterBtn) {
+      newsletterBtn.addEventListener('click', function() {
+        const input = document.getElementById('newsletterEmail');
+        if (input.value) {
+          // Add success animation
+          this.style.animation = 'pulse 0.5s ease';
+          setTimeout(() => {
+            this.style.animation = '';
+          }, 500);
+          
+          alert('✓ Thanks for subscribing! You\'ll receive updates soon.');
+          input.value = '';
+        } else {
+          // Add error animation
+          input.style.animation = 'shake 0.3s ease';
+          setTimeout(() => {
+            input.style.animation = '';
+          }, 300);
+        }
+      });
+    }
+
+    // Shake animation for errors
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Add floating animation to service prices
+    document.querySelectorAll('.service-price').forEach(price => {
+      price.addEventListener('mouseenter', function() {
+        this.style.animation = 'pulse 1s ease infinite';
+      });
+      price.addEventListener('mouseleave', function() {
+        this.style.animation = '';
+      });
+    });
+
+    // Team social icons hover animation
+    document.querySelectorAll('.team-social a').forEach(icon => {
+      icon.addEventListener('mouseenter', function() {
+        this.style.animation = 'rotate 0.5s ease';
+      });
+      icon.addEventListener('mouseleave', function() {
+        this.style.animation = '';
+      });
+    });
+
+    // Card entrance animation on scroll
+    const cards = document.querySelectorAll('.service-item, .team-card, .action-card');
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = `fadeInScale 0.6s ease forwards ${index * 0.1}s`;
+        }
+      });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => cardObserver.observe(card));
+  });
+</script>
+
 </body>
 </html>
